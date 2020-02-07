@@ -5,6 +5,10 @@ import apiUrl from "./ApiUrl";
 
 import RenderEntries from "./RenderEntries"
 
+
+/*
+TODO: styling, authentication
+*/
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -50,15 +54,15 @@ export default class Dashboard extends Component {
           <button onClick={() => this.props.handleLogoutClick()}>Logout</button>
           &emsp;
           <Link to="/">
-            <button type="button">
+            <button type="button" color="info" outlined rounded size="large">
               Login Page
             </button>
           </Link>
           <h1>Dashboard</h1>
-          <this.props.showRedirectMessage props={this.props.location.state}/>
+          <this.props.showRedirectMessage location={this.props.location}/>
           {/*<h1>Status: {this.props.loggedInStatus}</h1>*/}
-          {/*this.state.entries*/}
-          {this.state.entries && <RenderEntries entries={this.state.entries.filter(entry => !entry.done)}/>}
+          {this.state.entries && <RenderEntries entries={this.state.entries.filter(entry => !entry.done)
+            .sort((a, b) => a.due_date ? new Date(a.due_date) - new Date(b.due_date) : 1)}/>}
           <br></br>
           <Link to="/CompletedEntries">
             <button type="button">

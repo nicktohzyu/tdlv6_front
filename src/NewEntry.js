@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import axios from "axios";
 import apiUrl from "./ApiUrl";
+// import { Field, Control, Label, Input, Textarea, Select, Checkbox, Radio, Help, InputFile } from 'react-bulma-components/lib/components/form';
 
 export default class NewEntry extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export default class NewEntry extends Component {
       this.state = {
         content: "",
         due_date: "",
-        created: false
+        created: false,
+        newEntryErrors: ""
       };
   
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,11 +52,11 @@ export default class NewEntry extends Component {
           console.log(error.response);
           if(error.response.data.errors){
             this.setState({
-              registrationErrors: error.response.data.errors.join("\n")
+              newEntryErrors: error.response.data.errors.join("\n")
             });
           } else{
             this.setState({
-                registrationErrors: error.response.data.error
+                newEntryErrors: error.response.data.error
             });
           }
         });
@@ -76,7 +78,7 @@ export default class NewEntry extends Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <input
+            <textarea
               type="content"
               name="content"
               placeholder="Content here"
@@ -94,8 +96,8 @@ export default class NewEntry extends Component {
             <br></br>
             <button type="submit">Create Entry</button>
           </form>
-          {this.state.registrationErrors &&
-            <h1>Registration error: {"\n" + this.state.registrationErrors}</h1>
+          {this.state.newEntryErrors &&
+            <h1>Registration error: {"\n" + this.state.newEntryErrors}</h1>
           }
           <Link to="/dashboard">Dashboard</Link>
         </div>

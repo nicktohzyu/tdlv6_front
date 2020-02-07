@@ -49,7 +49,7 @@ class App extends Component {
       .catch(error => {
         console.log("check login error", error);
         this.setState({
-          loggedInStatus: "LOG IN ERROR",
+          loggedInStatus: "login error",
           user: {}
         });
       });
@@ -87,10 +87,15 @@ class App extends Component {
 
   showRedirectMessage(props){
     //console.log(props);
-    if(props){
-      if(props.props){
-        //console.log("showing redirect message");
-        return (<h1>{props.props.redirectMessage}</h1>);
+    if(props.location){
+      if(props.location.state){
+        // console.log("showing redirect message", props.location.state.redirectMessage);
+        // props.location.state.setState({
+        //   state: {}
+        // });
+        let message = props.location.state.redirectMessage;
+        window.history.pushState(null, '')
+        return (<h1>{message}</h1>);
       } else{
         return null;
       }
