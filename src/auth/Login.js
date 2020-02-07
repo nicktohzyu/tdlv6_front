@@ -64,7 +64,7 @@ export default class Login extends Component {
             onChange={this.handleChange}
             required
           />
-
+          <br></br>
           <input
             type="password"
             name="password"

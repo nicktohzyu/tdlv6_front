@@ -63,16 +63,16 @@ export default class Dashboard extends Component {
           {/*<h1>Status: {this.props.loggedInStatus}</h1>*/}
           {this.state.entries && <RenderEntries entries={this.state.entries.filter(entry => !entry.done)
             .sort((a, b) => a.due_date ? new Date(a.due_date) - new Date(b.due_date) : 1)}/>}
+          <Link to="/newEntry">
+            <button type="button">
+              Create a new Entry
+            </button>
+          </Link>
+          <br></br>
           <br></br>
           <Link to="/CompletedEntries">
             <button type="button">
               View your completed entries
-            </button>
-          </Link>
-          <br></br>
-          <Link to="/newEntry">
-            <button type="button">
-              Create New Entry
             </button>
           </Link>
         </div>

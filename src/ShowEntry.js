@@ -31,7 +31,7 @@ export default class ShowEntry extends Component {
   }
   deleteEntry() {
     if (
-      !confirm(
+      !window.confirm(
         "Are you sure you want to delete this entry? You can mark it as done instead"
       )
     ) {

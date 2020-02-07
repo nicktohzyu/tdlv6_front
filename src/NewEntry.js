@@ -99,7 +99,7 @@ export default class NewEntry extends Component {
           {this.state.newEntryErrors &&
             <h1>Registration error: {"\n" + this.state.newEntryErrors}</h1>
           }
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard">Cancel, go back to the dashboard</Link>
         </div>
       );
     }

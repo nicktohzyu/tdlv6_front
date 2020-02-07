@@ -21,7 +21,7 @@ export default class Home extends Component {
     if(this.props.loggedInStatus === "LOGGED_IN"){
       return(
         <React.Fragment>
-          <h2>You are already logged in!</h2>
+          <h3>You are already logged in!</h3>
           <Link to="/dashboard">
             <button type="button">
               Go to your dashboard
@@ -38,8 +38,7 @@ export default class Home extends Component {
         {/*<h1>build: {process.env.NODE_ENV}</h1>
         <h1>API: {this.props.api_url}</h1>*/}
         <h1>Home</h1>
-        <h1>Status: {this.props.loggedInStatus}</h1>
-        <button onClick={() => this.props.handleLogoutClick()}>Logout</button>
+        <h4>Status: {this.props.loggedInStatus}</h4>
         <Login {...this.props} handleSuccessfulAuth={this.handleSuccessfulAuth} />
         {this.dashboardLink()}
         <this.props.showRedirectMessage props={this.state.redirectMessage}/>

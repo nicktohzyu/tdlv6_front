@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import apiUrl from "./ApiUrl";
 import update from "immutability-helper";
-
-// import { Button, Field, Input } from 'react-bulma-components/dist';
+// import './w3.css';
 
 export default class RenderEntries extends Component {
   constructor(props) {
@@ -74,7 +73,6 @@ export default class RenderEntries extends Component {
     toggleDone = toggleDone.bind(this);
     function showToggleDone() {
       //console.log(entry);
-      let buttonText;
       if (entry.marked) {
         //change css for undo button
         return (
@@ -101,10 +99,10 @@ export default class RenderEntries extends Component {
       }
       return str.slice(0, len) + "...";
     }
-
+    let overdue = entry.due_date && new Date(entry.due_date).getTime() < new Date().getTime() - 24 * 60 * 60 * 1000 && !entry.done;
     //console.log(entry);
     return (
-      <tr key={entry.id}>
+      <tr key={entry.id} className={(overdue ? "overdue " : "") + "w3-hover-indigo"}>
         <td>{truncateString(entry.content, 30)}</td>
         <td>{entry.due_date}</td>
         {showToggleDone()}
@@ -121,8 +119,7 @@ export default class RenderEntries extends Component {
         </td>
         <td> {entry.tags.reduce( (s, tag) => s+", "+tag.content, "").slice(2)}</td>
         {/* {console.log(new Date(entry.due_date).getTime() , new Date().getTime() - 24 * 60 * 60 * 1000)} */}
-        {entry.due_date && new Date(entry.due_date).getTime() < new Date().getTime() - 24 * 60 * 60 * 1000 && !entry.done && 
-          <td> overdue </td>}
+        <td> {overdue && <>overdue</> } </td>
         {/*console.log(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)) > new Date(entry.due_date))*/}
       </tr>
     );
@@ -145,21 +142,24 @@ export default class RenderEntries extends Component {
             <input
               type="search"
               name="search"
-              placeholder="Search in content or tags, separate with commas"
+              placeholder="Search in content or tags, search for multiple terms with commas"
               value={this.state.content}
               onChange={this.handleChange}
               required
+              size="60"
+              title=""
             />
           </form>
-          <table>
+          <table className="entries-table">
             <tbody>
               {/* {console.log(this.state.search)} */}
               <tr>
                 <th>Content</th>
                 <th>Due</th>
-                <th>Done</th>
+                <th>{/* mark as done button */}</th>
                 <th>{/* edit button */}</th>
                 <th>Tags</th>
+                <th>{/* overdue */}</th>
               </tr>
               {/* {console.log("render entries: ", this.props.entries, this.state.entries)} */}
               {this.state.entries
