@@ -260,7 +260,7 @@ export default class ShowEntry extends Component {
               value={this.state.done}
               onChange={this.handleChange}
             </select> */}
-            <Select 
+            <Select className="select"
               name="done"
               defaultValue={doneOptions[this.state.done? 1: 0]}
               onChange={(selected) => this.setState({done: selected.value})

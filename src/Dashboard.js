@@ -54,7 +54,7 @@ export default class Dashboard extends Component {
           <button onClick={() => this.props.handleLogoutClick()}>Logout</button>
           &emsp;
           <Link to="/">
-            <button type="button" color="info" outlined rounded size="large">
+            <button>
               Login Page
             </button>
           </Link>
