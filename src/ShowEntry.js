@@ -88,6 +88,7 @@ export default class ShowEntry extends Component {
           console.log("Successfully added tag");
           this.setState({
             tags: [...this.state.tags, response.data],
+            tagContent: "",
             tagCreatedMessage: "Successfully added tag",
             tagDeleteMessage: ""
           });
@@ -303,7 +304,7 @@ export default class ShowEntry extends Component {
           {this.state.tagCreatedMessage}
         </div>
         <br></br>
-        <Link to="/dashboard">Cancel, go back to the dashboard</Link>
+        <Link to="/dashboard">Go back to the dashboard</Link>
       </div>
     );
   }

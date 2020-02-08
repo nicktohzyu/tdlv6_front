@@ -105,7 +105,8 @@ export default class Registration extends Component {
         {this.state.registrationErrors &&
           <h1>Registration error: {"\n" + this.state.registrationErrors}</h1>
         }
-        <Link to="/">Home</Link>
+        <br></br>
+        <Link to="/">Back to login page</Link>
       </div>
     );
   }

@@ -51,7 +51,7 @@ export default class RenderEntries extends Component {
                 }
               })
             });
-            console.log(this.state.entries);
+            // console.log(this.state.entries);
           }
         })
         .catch(error => {
@@ -117,7 +117,7 @@ export default class RenderEntries extends Component {
             <button type="button">Edit</button>
           </Link>
         </td>
-        <td> {entry.tags.reduce( (s, tag) => s+", "+tag.content, "").slice(2)}</td>
+        <td className="tags"> {entry.tags.length ? entry.tags.reduce( (s, tag) => s+", "+tag.content, "").slice(2) : "-"}</td>
         {/* {console.log(new Date(entry.due_date).getTime() , new Date().getTime() - 24 * 60 * 60 * 1000)} */}
         <td> {overdue && <>overdue</> } </td>
         {/*console.log(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)) > new Date(entry.due_date))*/}
@@ -127,11 +127,11 @@ export default class RenderEntries extends Component {
 
   filterEntry(entry){
     var include = true;
-    var combined = entry.content.toLowerCase() + entry.tags.reduce( (s, tag) => s+" "+tag.content, "");
-    //console.log(combined);
-    //tokenize search terms
+    var combined = entry.content.toLowerCase() + entry.tags.reduce( (s, tag) => s+" "+tag.content.toLowerCase(), "");
     var searchTokens = this.state.search.toLowerCase().split(",");
-    searchTokens.forEach(token => {include &= combined.includes(token.trim());});
+    searchTokens.forEach(token => {
+      include &= combined.includes(token.trim());
+    });
     return include;
   }
   render() {
