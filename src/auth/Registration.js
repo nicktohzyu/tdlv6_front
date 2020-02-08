@@ -52,9 +52,11 @@ export default class Registration extends Component {
         }
       })
       .catch(error => {
-        this.setState({
-          registrationErrors: error.response.data.errors.join("\n")
-        });
+        if(error.response && error.response.data && error.response.data.errors){
+          this.setState({
+            registrationErrors: error.response.data.errors.join("\n")
+          });
+        }
         console.log("registration error");
         console.log(error.response);
       });

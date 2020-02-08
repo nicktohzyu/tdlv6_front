@@ -57,7 +57,7 @@ export default class ShowEntry extends Component {
       .catch(error => {
         console.log("delete entry error");
         console.log(error.response);
-        if (error.response.data.errors) {
+        if(error.response && error.response.data){
           // this.setState({
           //   registrationErrors: error.response.data.errors.join("\n")
           // });
@@ -97,7 +97,7 @@ export default class ShowEntry extends Component {
       .catch(error => {
         console.log("tag creation error");
         console.log(error.response);
-        if(error.response.data.errors){
+        if(error.response && error.response.data && error.response.data.errors){
           this.setState({
             tagCreatedMessage: error.response.data.errors.join("\n")
           });
@@ -145,7 +145,7 @@ export default class ShowEntry extends Component {
       .catch(error => {
         console.log("entry update error");
         console.log(error.response);
-        if(error.response.data.errors){
+        if(error.response && error.response.data && error.response.data.errors){
           this.setState({
             updateMessage: error.response.data.errors.join("\n")
           });

@@ -50,7 +50,7 @@ export default class NewEntry extends Component {
       .catch(error => {
         console.log("entry creation error");
         console.log(error.response);
-        if(error.response.data.errors){
+        if(error.response && error.response.data && error.response.data.errors){
           this.setState({
             newEntryErrors: error.response.data.errors.join("\n")
           });
