@@ -303,7 +303,7 @@ export default class ShowEntry extends Component {
           {this.state.tagCreatedMessage}
         </div>
         <br></br>
-        <Link to="/dashboard">Back to the dashboard</Link>
+        <Link to="/dashboard">Cancel, go back to the dashboard</Link>
       </div>
     );
   }
