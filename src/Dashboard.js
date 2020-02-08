@@ -62,7 +62,10 @@ export default class Dashboard extends Component {
           <this.props.showRedirectMessage location={this.props.location}/>
           {/*<h1>Status: {this.props.loggedInStatus}</h1>*/}
           {this.state.entries && <RenderEntries entries={this.state.entries.filter(entry => !entry.done)
-            .sort((a, b) => a.due_date ? new Date(a.due_date) - new Date(b.due_date) : 1)}/>}
+            .sort((a, b) => 
+              !a.due_date ? 1:
+              !b.due_date ? -1: new Date(a.due_date) - new Date(b.due_date)
+            )}/>}
           <Link to="/newEntry">
             <button type="button">
               Create a new Entry
