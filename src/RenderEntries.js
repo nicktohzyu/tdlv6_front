@@ -117,10 +117,8 @@ export default class RenderEntries extends Component {
             <button type="button">Edit</button>
           </Link>
         </td>
-        <td className="tags"> {entry.tags.length ? entry.tags.reduce( (s, tag) => s+", "+tag.content, "").slice(2) : "-"}</td>
-        {/* {console.log(new Date(entry.due_date).getTime() , new Date().getTime() - 24 * 60 * 60 * 1000)} */}
+        <td className="tags"> {entry.tags.length ? truncateString(entry.tags.reduce( (s, tag) => s+", "+tag.content, "").slice(2), 30) : "-"}</td>
         <td> {overdue && <>overdue</> } </td>
-        {/*console.log(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)) > new Date(entry.due_date))*/}
       </tr>
     );
   }
